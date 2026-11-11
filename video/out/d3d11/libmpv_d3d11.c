@@ -57,6 +57,8 @@ static int wrap_fbo(struct libmpv_gpu_context *ctx, mpv_render_param *params, st
         }
         p->tex = ra_d3d11_wrap_tex(p->ra_ctx->ra, backbuffer);
         SAFE_RELEASE(backbuffer);
+        if (!p->tex)
+            return MPV_ERROR_UNSUPPORTED;
     }
 
     *out = p->tex;
